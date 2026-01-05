@@ -19,6 +19,7 @@ jobs:
             cd ~/app
 
             # 1. Tự động tạo/ghi đè file .env từ GitHub Secrets
+            echo "DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" > .env
             echo "DB_URL=${{ secrets.DB_URL }}" > .env
             echo "DB_USER=${{ secrets.DB_USER }}" >> .env
             echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
