@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  backend:
+    image: your-docker-username/sacabam-be:latest # Lấy từ Docker Hub
+    container_name: sacabam-backend
+    restart: always
+    ports:
+      - "8080:8080"
+    env_file: .env # Đọc bí mật từ file .env local trên server
+    logging: # Giới hạn log để không đầy ổ cứng
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  frontend:
+    image: your-docker-username/sacabam-fe:latest # Lấy từ Docker Hub
+    container_name: sacabam-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
